@@ -1,24 +1,37 @@
 
 import React from 'react'
-import { ApplicationProvider } from '@ui-kitten/components'
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
 import { Stack } from 'expo-router'
-import HomeScreen from '../src/screens/HomeScreen'
+import { useColorScheme } from 'react-native'
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 const layout = () => {
+
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === 'dark'? eva.dark : eva.light
+
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
+    <>
+    <IconRegistry icons={EvaIconsPack} />
+    <ApplicationProvider {...eva} theme={theme}>
         <Stack>
             <Stack.Screen name='index' 
-            options={{
+              options={{
                 headerTitle: 'Turnos Redes', 
                 headerBackTitleStyle: { fontSize:40 },
-                headerTintColor: '#57b3eb',
-                headerStyle:{backgroundColor: '#093e5f'}
+                headerStyle:{backgroundColor: '#4468e5'},
+                headerTintColor:'#dbe2fa'
             }} />
-            <Stack.Screen name='edit' options={{headerTitle: 'Editar turnos', headerBackTitleStyle: { fontSize:40}, headerTintColor: '#03629c', headerStyle:{backgroundColor: '#093e5f'} }}/>
+            <Stack.Screen name='edit'
+              options={{
+                headerTitle: 'Editar turnos',
+                headerBackTitleStyle: { fontSize:40},
+            }}/>
         </Stack>
     </ApplicationProvider>
+    
+    </>
     
   )
 }

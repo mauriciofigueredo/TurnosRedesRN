@@ -1,12 +1,25 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import { Icon } from '@ui-kitten/components';
 
-const MyIcon = () => {
+
+interface Props {
+  name: string;
+  color?: string;
+  white?:boolean;
+}
+
+const MyIcon = ({name, color='#c2fffb'}:Props) => {
   return (
-    <View>
-      <Text>MyIcon</Text>
-    </View>
+    <Icon name={name} fill={color}/>
   )
 }
 
 export default MyIcon
+
+const styles = StyleSheet.create({
+  icon: {
+    height: 32,
+    width: 32
+  }
+})
